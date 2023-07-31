@@ -1,10 +1,13 @@
 <template>
 	<div class="app">
-		<PostForm 
-			@create = "createPost"
-		/>
+		<MyDialog :show="true">
+			<PostForm 
+				@create = "createPost"
+			/>
+		</MyDialog>
 		<PostList
 			:posts="posts"
+			@remove="removePost"
 		/>
 	</div> 
 </template>
@@ -29,8 +32,12 @@ export default {
 	methods:{
 		createPost(post)
 			{
-				console.log(post);
+				this.posts.push(post);
 			},
+		removePost(post)
+			{
+				this.posts = this.posts.filter(p=> p.id !== post.id)
+			}
 		}
 	}
 </script>

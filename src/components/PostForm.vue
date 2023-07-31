@@ -1,24 +1,24 @@
 <template>
     <form @submit.prevent>
         <h4>Создание поста</h4>
-        <input
+        <MyInput
             v-model="post.title"
             type="text"
             class="input"
             placeholder="Название"
-        >
-        <input
+        />
+        <MyInput
             v-model="post.body"
             type="text"
             class="input"
             placeholder="Описание"
-        >
-        <button
+        />
+        <MyButtonVue
+            style="align-self: flex-end; margin-top: 15px"
             @click="createPost"
-            class="btn"
         >
             Создать    
-        </button>
+        </MyButtonVue>
     </form>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     methods: {
         createPost() {
             this.post.id = Date.now(); 
-            this.$emit('create' , this.post)
+            this.$emit ('create' , this.post)
             this.post = {
                 title: '',
                 body: '',
@@ -52,21 +52,4 @@ form
 	flex-direction: column;
 }
 
-.input
-{
-	width: 100%;
-	padding: 10px 15px;
-	border: 1px solid teal;
-	margin-top: 15px;
-}
-
-.btn
-{
-	align-self: end;
-	margin-top: 15px;
-	padding: 10px 15px;
-	background: none;
-	color: teal;
-	border: 1px solid teal;
-}
 </style>
